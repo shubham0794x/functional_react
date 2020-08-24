@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import List from './component/List';
-import withListLoading from './component/withListLoading';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import List from "./component/List";
+import withListLoading from "./component/withListLoading";
 
 function App() {
   const ListLoading = withListLoading(List);
@@ -10,7 +10,7 @@ function App() {
     repos: null,
   });
 
-  useEffect (() => {
+  useEffect(() => {
     setAppState({ loading: true });
     const apiUrl = `https://api.github.com/users/shubham0794x/repos`;
     fetch(apiUrl)
@@ -18,19 +18,19 @@ function App() {
       .then((repos) => {
         setAppState({
           loading: false,
-          repos: repos
+          repos: repos,
         });
       });
   }, [setAppState]);
-  return ( 
-      <div className = 'App' >
-        <div className = 'container' >
-          <h1 > My Repositories </h1> 
-      </div> 
-      <div className = 'repo-container' >
-        <ListLoading isLoading = {appState.loading} repos = {appState.repos} /> 
+  return (
+    <div className="App">
+      <div className="container">
+        <h1> My Repositories </h1>
       </div>
+      <div className="repo-container">
+        <ListLoading isLoading={appState.loading} repos={appState.repos} />
       </div>
-      );
-      }
-      export default App;
+    </div>
+  );
+}
+export default App;
